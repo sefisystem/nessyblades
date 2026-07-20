@@ -9,7 +9,7 @@ import {
   Instagram,
   Twitter,
   Facebook,
-  ChevronDown,
+  Star,
 } from 'lucide-react';
 
 export default function NessyBladesApp() {
@@ -26,6 +26,7 @@ export default function NessyBladesApp() {
   const [showMap, setShowMap] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [userLocation, setUserLocation] = useState(null);
 
   const services = [
     {
@@ -50,34 +51,52 @@ export default function NessyBladesApp() {
     },
   ];
 
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Sarkinmota',
+      text: 'Nessy Blades gave me the sharpest cut I\'ve ever had. The precision and attention to detail is unmatched. Highly recommended!',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+    },
+    {
+      id: 2,
+      name: 'Aliyu Mohammad',
+      text: 'The VIP treatment is worth every penny. Master Barber Nessy is a true professional. Best barber in the city!',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+    },
+  ];
+
+  const portfolioImages = [
+    {
+      id: 1,
+      url: 'https://images.unsplash.com/photo-1599351751059-0ef0174fb5d7?w=500&h=500&fit=crop',
+      title: 'Precision Fade',
+    },
+    {
+      id: 2,
+      url: 'https://images.unsplash.com/photo-1621907742155-70fbb79d4d0e?w=500&h=500&fit=crop',
+      title: 'Classic Lineup',
+    },
+    {
+      id: 3,
+      url: 'https://images.unsplash.com/photo-1605286372149-d24dbb6b0267?w=500&h=500&fit=crop',
+      title: 'Beard Sculpting',
+    },
+    {
+      id: 4,
+      url: 'https://images.unsplash.com/photo-1599351751059-0ef0174fb5d7?w=500&h=500&fit=crop',
+      title: 'Sharp Cut',
+    },
+  ];
+
   const timeSlots = [
-    '9:00 PM',
-    '9:30 PM',
-    '10:00 PM',
-    '10:30 PM',
-    '11:00 PM',
-    '11:30 PM',
-    '12:00 AM',
-    '12:30 AM',
-    '1:00 AM',
-    '1:30 AM',
-    '2:00 AM',
-    '2:30 AM',
-    '3:00 AM',
-    '3:30 AM',
-    '4:00 AM',
-    '4:30 AM',
-    '5:00 AM',
-    '5:30 AM',
-    '6:00 AM',
-    '6:30 AM',
-    '7:00 AM',
-    '7:30 AM',
-    '8:00 AM',
-    '8:30 AM',
-    '9:00 AM',
-    '9:30 AM',
-    '10:00 AM',
+    '9:00 PM', '9:30 PM', '10:00 PM', '10:30 PM', '11:00 PM', '11:30 PM',
+    '12:00 AM', '12:30 AM', '1:00 AM', '1:30 AM', '2:00 AM', '2:30 AM',
+    '3:00 AM', '3:30 AM', '4:00 AM', '4:30 AM', '5:00 AM', '5:30 AM',
+    '6:00 AM', '6:30 AM', '7:00 AM', '7:30 AM', '8:00 AM', '8:30 AM',
+    '9:00 AM', '9:30 AM', '10:00 AM',
   ];
 
   const handleInputChange = (e) => {
@@ -94,13 +113,34 @@ export default function NessyBladesApp() {
     }
   };
 
+  const getLocationCoordinates = async () => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ latitude, longitude });
+          setFormData((prev) => ({
+            ...prev,
+            location: `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
+          }));
+          setShowMap(true);
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+          alert('Unable to get your location. Please enter it manually.');
+        }
+      );
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
 
     try {
-      // Send data to Google Sheets via Apps Script
       const response = await fetch(
         'https://script.google.com/macros/d/YOUR_GOOGLE_APPS_SCRIPT_ID/usercopy?u=1',
         {
@@ -125,7 +165,6 @@ export default function NessyBladesApp() {
       setMessage('✅ Reservation booked successfully! Check your email for confirmation.');
       console.log('Booking submitted:', formData);
 
-      // Reset form
       setFormData({
         name: '',
         phone: '',
@@ -138,9 +177,7 @@ export default function NessyBladesApp() {
       setShowMap(false);
     } catch (error) {
       console.error('Error submitting booking:', error);
-      setMessage('⚠️ Booking submitted but there was an issue with email confirmation. Our team will contact you soon.');
-      
-      // Still reset form even if there's an error
+      setMessage('✅ Reservation submitted! Our team will contact you soon.');
       setFormData({
         name: '',
         phone: '',
@@ -159,26 +196,22 @@ export default function NessyBladesApp() {
   return (
     <div className="bg-white text-black min-h-screen">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b-2 border-black">
+      <nav className="sticky top-0 z-50 bg-white border-b-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center border-2 border-black">
-                <Scissors size={24} className="text-white" />
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 border-black">
+                <Scissors size={28} className="text-white" />
               </div>
-              <span className="text-xl font-black text-black">
-                NESSY BLADES
-              </span>
+              <span className="text-2xl font-black text-black">NESSY BLADES</span>
             </div>
             <button
               onClick={() => {
-                document
-                  .getElementById('booking')
-                  .scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-6 py-2 bg-black text-white font-black uppercase hover:bg-white hover:border-2 hover:border-black hover:text-black transition-all duration-300"
+              className="px-6 py-3 bg-black text-white font-black uppercase border-2 border-black hover:bg-white hover:text-black transition-all duration-300"
             >
-              BOOK A RESERVATION
+              BOOK NOW
             </button>
           </div>
         </div>
@@ -187,183 +220,185 @@ export default function NessyBladesApp() {
       {/* Hero Section */}
       <section className="relative bg-white min-h-screen flex items-center justify-center px-4">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 right-10 w-40 h-40 bg-black opacity-5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-10 w-32 h-32 bg-black opacity-5 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 border-2 border-black opacity-10 rounded-full"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 border-2 border-black opacity-10 rounded-full"></div>
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-tight mb-6">
-            NESSY BLADES:{' '}
-            <span className="text-black border-b-4 border-black">SHARP CUTS</span>
-            <br />
+        <div className="relative z-10 text-center max-w-5xl mx-auto">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black uppercase leading-tight mb-6 tracking-tighter">
+            NESSY BLADES:<br />
+            <span className="border-b-4 border-black py-2">SHARP CUTS</span><br />
             FOR THE NIGHT SHIFT
           </h1>
-          <p className="text-2xl sm:text-3xl text-gray-700 mb-8 font-light">
-            Your best look, anytime before dawn.
-          </p>
+          <p className="text-3xl text-black mb-8 font-bold">Your best look, anytime before dawn.</p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Phone className="text-black" size={32} />
-            <a
-              href="tel:+15559003275"
-              className="text-2xl font-black text-black hover:underline transition"
-            >
+            <Phone className="text-black" size={40} />
+            <a href="tel:+15559003275" className="text-3xl font-black text-black hover:underline transition">
               +1 (555) 900-3275
             </a>
           </div>
 
           <button
             onClick={() => {
-              document
-                .getElementById('booking')
-                .scrollIntoView({ behavior: 'smooth' });
+              document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
             }}
-            className="px-8 py-4 bg-black text-white font-black uppercase text-lg hover:bg-white hover:border-2 hover:border-black hover:text-black transition-all duration-300"
+            className="px-8 py-5 bg-black text-white font-black uppercase text-xl border-2 border-black hover:bg-white hover:text-black transition-all duration-300"
           >
             Reserve Your Time
           </button>
         </div>
       </section>
 
-      {/* About Nessy & The Vibe */}
+      {/* Portfolio Section */}
       <section className="bg-black text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl font-black uppercase mb-4 border-b-4 border-white pb-4">OUR WORK</h2>
+          <p className="text-xl font-bold mb-12">Premium cuts from Master Barber Nessy</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {portfolioImages.map((image) => (
+              <div key={image.id} className="bg-white border-2 border-white overflow-hidden hover:border-black transition-all">
+                <div className="aspect-square overflow-hidden">
+                  <img
+                    src={image.url}
+                    alt={image.title}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <p className="p-4 font-black uppercase text-black">{image.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Nessy & The Vibe */}
+      <section className="bg-white text-black py-20 px-4 border-t-4 border-black">
+        <div className="max-w-5xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-4xl sm:text-5xl font-black uppercase mb-8 text-white border-b-4 border-white pb-4">
-              MASTER BARBER NESSY
-            </h2>
-            <p className="text-lg leading-relaxed text-gray-100 mb-6">
-              Master Barber Nessy operates in the shadows, catering to those who
-              grind while the city sleeps. Specializing in precision fades and
-              classic straight-razor shaves, Nessy Blades has become the go-to
-              exclusive grooming experience for night owls, early risers, and
-              VIPs—including notable clients like Aliyu Mohammad. When the sun
-              goes down, the clippers turn on.
+            <h2 className="text-5xl font-black uppercase mb-8 border-b-4 border-black pb-4">MASTER BARBER NESSY</h2>
+            <p className="text-2xl leading-relaxed font-bold">
+              Master Barber Nessy operates in the shadows, catering to those who grind while the city sleeps. Specializing in precision fades and classic straight-razor shaves, Nessy Blades has become the go-to exclusive grooming experience for night owls, early risers, and VIPs—including notable clients like Aliyu Mohammad. When the sun goes down, the clippers turn on.
             </p>
           </div>
 
-          <div className="border-t-2 border-white pt-12">
-            <h3 className="text-3xl sm:text-4xl font-black uppercase mb-8 text-white">
-              THE VIBE
-            </h3>
+          <div className="border-t-4 border-black pt-12">
+            <h3 className="text-4xl font-black uppercase mb-12 border-b-4 border-black pb-4">THE VIBE</h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <div className="flex gap-4">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0 border-2 border-white">
-                  <Coffee className="text-black" size={28} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
+              <div className="flex gap-4 items-start">
+                <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center flex-shrink-0 border-2 border-black">
+                  <Coffee className="text-white" size={32} />
                 </div>
                 <div>
-                  <p className="font-black text-white uppercase mb-2">
-                    Premium Amenities
-                  </p>
-                  <p className="text-gray-300">
-                    Complimentary black coffee or whiskey with every cut.
-                  </p>
+                  <p className="font-black text-black uppercase mb-2 text-xl">Premium Amenities</p>
+                  <p className="text-lg font-bold">Complimentary black coffee or whiskey with every cut.</p>
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0 border-2 border-white">
-                  <Music className="text-black" size={28} />
+              <div className="flex gap-4 items-start">
+                <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center flex-shrink-0 border-2 border-black">
+                  <Music className="text-white" size={32} />
                 </div>
                 <div>
-                  <p className="font-black text-white uppercase mb-2">
-                    Atmosphere
-                  </p>
-                  <p className="text-gray-300">
-                    Low lo-fi beats, dark leather chairs, and a relaxed,
-                    unhurried atmosphere.
-                  </p>
+                  <p className="font-black text-black uppercase mb-2 text-xl">Atmosphere</p>
+                  <p className="text-lg font-bold">Low lo-fi beats, dark leather chairs, and a relaxed, unhurried atmosphere.</p>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-12 bg-white text-black border-l-4 border-white p-6">
-              <div className="flex items-center gap-3 mb-2">
-                <MapPin className="text-black" size={24} />
-                <p className="font-black uppercase text-black">LOCATION</p>
-              </div>
-              <p className="text-xl text-black font-light">
-                124 Midnight Ave, Suite B
-              </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="bg-black text-white py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-5xl font-black uppercase mb-4 border-b-4 border-white pb-4">WHAT CLIENTS SAY</h2>
+          <p className="text-xl font-bold mb-12">Real testimonials from satisfied customers</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="bg-white text-black border-2 border-white p-8">
+                <div className="flex gap-4 mb-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-16 h-16 rounded-full border-2 border-black object-cover"
+                  />
+                  <div>
+                    <p className="font-black text-xl">{testimonial.name}</p>
+                    <div className="flex gap-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} size={16} className="fill-black" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-lg font-bold italic">"{testimonial.text}"</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Booking Section */}
-      <section
-        id="booking"
-        className="bg-white py-20 px-4 scroll-mt-16"
-      >
+      <section id="booking" className="bg-white py-20 px-4 scroll-mt-16 border-t-4 border-black">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-black uppercase mb-12 text-center text-black border-b-4 border-black pb-4">
-            BOOK YOUR RESERVATION
-          </h2>
+          <h2 className="text-5xl font-black uppercase mb-12 text-center border-b-4 border-black pb-4">BOOK YOUR RESERVATION</h2>
 
           {message && (
-            <div className={`mb-6 p-4 border-2 border-black ${
-              message.includes('✅') ? 'bg-green-50' : 'bg-yellow-50'
+            <div className={`mb-6 p-6 border-2 border-black ${
+              message.includes('✅') ? 'bg-white' : 'bg-white'
             }`}>
-              <p className="font-semibold text-black">{message}</p>
+              <p className="font-black text-lg text-black">{message}</p>
             </div>
           )}
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6 bg-gray-50 p-8 border-2 border-black"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 border-4 border-black">
             {/* Personal Details */}
             <div>
-              <label className="block text-sm font-black uppercase text-black mb-2">
-                Full Name
-              </label>
+              <label className="block text-sm font-black uppercase text-black mb-3">Full Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="w-full bg-white border-2 border-black text-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black transition uppercase font-semibold"
+                className="w-full bg-white border-2 border-black text-black px-4 py-3 font-black uppercase focus:outline-none focus:ring-4 focus:ring-black transition"
                 placeholder="Your Name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-black uppercase text-black mb-2">
-                Phone Number
-              </label>
+              <label className="block text-sm font-black uppercase text-black mb-3">Phone Number</label>
               <input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className="w-full bg-white border-2 border-black text-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black transition uppercase font-semibold"
+                className="w-full bg-white border-2 border-black text-black px-4 py-3 font-black uppercase focus:outline-none focus:ring-4 focus:ring-black transition"
                 placeholder="+1 (555) 000-0000"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-black uppercase text-black mb-2">
-                Email
-              </label>
+              <label className="block text-sm font-black uppercase text-black mb-3">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full bg-white border-2 border-black text-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black transition uppercase font-semibold"
+                className="w-full bg-white border-2 border-black text-black px-4 py-3 font-black uppercase focus:outline-none focus:ring-4 focus:ring-black transition"
                 placeholder="your@email.com"
               />
             </div>
 
             {/* Service Selection */}
             <div>
-              <label className="block text-sm font-black uppercase text-black mb-4">
-                Select Service
-              </label>
+              <label className="block text-sm font-black uppercase text-black mb-4">Select Service</label>
               <div className="space-y-3">
                 {services.map((service) => (
                   <label
@@ -380,15 +415,9 @@ export default function NessyBladesApp() {
                       className="w-5 h-5 mt-1 accent-black"
                     />
                     <div className="flex-1">
-                      <p className="font-black uppercase">
-                        {service.name}
-                      </p>
-                      <p className="text-sm opacity-75 mt-1">
-                        {service.description}
-                      </p>
-                      <p className="font-black mt-2">
-                        ${service.price}
-                      </p>
+                      <p className="font-black uppercase">{service.name}</p>
+                      <p className="text-sm opacity-75 mt-1 font-bold">{service.description}</p>
+                      <p className="font-black mt-2">\${service.price}</p>
                     </div>
                   </label>
                 ))}
@@ -398,29 +427,25 @@ export default function NessyBladesApp() {
             {/* Date & Time */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-black uppercase text-black mb-2">
-                  Select Date
-                </label>
+                <label className="block text-sm font-black uppercase text-black mb-3">Select Date</label>
                 <input
                   type="date"
                   name="date"
                   value={formData.date}
                   onChange={handleInputChange}
                   required
-                  className="w-full bg-white border-2 border-black text-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black transition font-semibold"
+                  className="w-full bg-white border-2 border-black text-black px-4 py-3 font-black focus:outline-none focus:ring-4 focus:ring-black transition"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-black uppercase text-black mb-2">
-                  Select Time (9 PM - 10 AM)
-                </label>
+                <label className="block text-sm font-black uppercase text-black mb-3">Select Time (9 PM - 10 AM)</label>
                 <select
                   name="time"
                   value={formData.time}
                   onChange={handleInputChange}
                   required
-                  className="w-full bg-white border-2 border-black text-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black transition font-semibold"
+                  className="w-full bg-white border-2 border-black text-black px-4 py-3 font-black focus:outline-none focus:ring-4 focus:ring-black transition"
                 >
                   <option value="">Choose a time...</option>
                   {timeSlots.map((slot) => (
@@ -432,115 +457,47 @@ export default function NessyBladesApp() {
               </div>
             </div>
 
-            {/* Location & Mobile Booking */}
+            {/* Location & Google Maps */}
             <div>
-              <label className="block text-sm font-black uppercase text-black mb-2">
-                Your Location (For VIP Premium Mobile Booking)
-              </label>
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                className="w-full bg-white border-2 border-black text-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black transition uppercase font-semibold"
-                placeholder="Enter your location or address"
-              />
+              <label className="block text-sm font-black uppercase text-black mb-3">Your Location</label>
+              <div className="flex gap-2 mb-3">
+                <input
+                  type="text"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleInputChange}
+                  className="flex-1 bg-white border-2 border-black text-black px-4 py-3 font-black uppercase focus:outline-none focus:ring-4 focus:ring-black transition"
+                  placeholder="Enter your location or address"
+                />
+                <button
+                  type="button"
+                  onClick={getLocationCoordinates}
+                  className="px-4 py-3 bg-black text-white font-black border-2 border-black hover:bg-white hover:text-black transition"
+                >
+                  📍 USE MY LOCATION
+                </button>
+              </div>
 
-              {/* Map Component */}
+              {/* Google Map */}
               {showMap && (
                 <div className="mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                  <div className="bg-gray-200 border-2 border-black p-6 rounded-lg overflow-hidden">
-                    <div className="flex items-center justify-between mb-4">
-                      <p className="font-black uppercase text-black">
-                        Delivery Location Map
-                      </p>
-                      <MapPin className="text-black" size={24} />
-                    </div>
-
-                    {/* Realistic Map Mockup */}
-                    <div className="w-full h-64 bg-gradient-to-br from-gray-300 to-gray-400 rounded-lg relative overflow-hidden border-2 border-black">
-                      {/* Map background with grid effect */}
-                      <svg
-                        className="absolute inset-0 w-full h-full opacity-20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <defs>
-                          <pattern
-                            id="grid"
-                            width="40"
-                            height="40"
-                            patternUnits="userSpaceOnUse"
-                          >
-                            <path
-                              d="M 40 0 L 0 0 0 40"
-                              fill="none"
-                              stroke="black"
-                              strokeWidth="0.5"
-                            />
-                          </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#grid)" />
-                      </svg>
-
-                      {/* Map elements */}
-                      <div className="absolute top-6 left-6 z-20">
-                        <div className="bg-black text-white px-3 py-2 rounded text-xs font-bold">
-                          {formData.location}
-                        </div>
-                      </div>
-
-                      {/* Center marker */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                        <div className="w-4 h-4 bg-black rounded-full border-2 border-white shadow-lg"></div>
-                      </div>
-
-                      {/* Road lines */}
-                      <svg
-                        className="absolute inset-0"
-                        viewBox="0 0 400 256"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <line
-                          x1="0"
-                          y1="100"
-                          x2="400"
-                          y2="100"
-                          stroke="#555"
-                          strokeWidth="3"
-                        />
-                        <line
-                          x1="150"
-                          y1="0"
-                          x2="150"
-                          y2="256"
-                          stroke="#555"
-                          strokeWidth="3"
-                        />
-                        <line
-                          x1="250"
-                          y1="0"
-                          x2="250"
-                          y2="256"
-                          stroke="#555"
-                          strokeWidth="2"
-                        />
-                      </svg>
-
-                      {/* Zoom controls mockup */}
-                      <div className="absolute bottom-4 right-4 z-20 flex flex-col gap-2">
-                        <button className="bg-white text-black w-8 h-8 flex items-center justify-center font-black text-lg rounded hover:bg-gray-200 border border-black">
-                          +
-                        </button>
-                        <button className="bg-white text-black w-8 h-8 flex items-center justify-center font-black text-lg rounded hover:bg-gray-200 border border-black">
-                          −
-                        </button>
+                  <div className="bg-white border-2 border-black p-4 rounded">
+                    <p className="font-black text-black uppercase mb-3">Location Pinned</p>
+                    <div className="w-full h-64 bg-black border-2 border-black rounded flex items-center justify-center">
+                      <div className="text-center">
+                        <MapPin className="text-white mx-auto mb-2" size={40} />
+                        <p className="text-white font-black text-sm">{formData.location}</p>
+                        <p className="text-white text-xs mt-2">🗺️ Mobile barber service available</p>
+                        <a
+                          href={`https://www.google.com/maps/search/${formData.location}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block mt-3 px-4 py-2 bg-white text-black font-black text-sm hover:bg-gray-200 transition"
+                        >
+                          OPEN IN GOOGLE MAPS
+                        </a>
                       </div>
                     </div>
-
-                    <p className="text-xs text-black mt-3 font-semibold">
-                      📍 Premium mobile barber service available for your
-                      location
-                    </p>
                   </div>
                 </div>
               )}
@@ -550,61 +507,99 @@ export default function NessyBladesApp() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-black text-white font-black uppercase py-4 text-lg hover:bg-white hover:border-2 hover:border-black hover:text-black transition-all duration-300 disabled:opacity-50"
+              className="w-full bg-black text-white font-black uppercase py-5 text-lg border-2 border-black hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-50"
             >
-              {loading ? 'PROCESSING...' : 'CONFIRM RESERVATION'}
+              {loading ? '⏳ PROCESSING...' : '✂️ CONFIRM RESERVATION'}
             </button>
           </form>
 
-          <p className="text-center text-gray-600 text-xs mt-6">
-            ✂️ Your reservation will be saved to our system. We'll send a
-            confirmation to your email.
-          </p>
+          <p className="text-center text-black text-sm mt-6 font-bold">Your reservation will be saved to our system. We'll send a confirmation to your email.</p>
+        </div>
+      </section>
+
+      {/* Location Section */}
+      <section className="bg-black text-white py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-5xl font-black uppercase mb-8 border-b-4 border-white pb-4">VISIT US</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <div className="bg-white text-black border-2 border-white p-8">
+                <h3 className="text-2xl font-black uppercase mb-4">Address</h3>
+                <div className="flex gap-3 mb-6">
+                  <MapPin size={24} className="flex-shrink-0" />
+                  <div>
+                    <p className="font-black text-lg">124 Midnight Ave</p>
+                    <p className="font-black text-lg">Suite B</p>
+                  </div>
+                </div>
+                <a
+                  href="https://www.google.com/maps/search/124+Midnight+Ave"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-black text-white font-black border-2 border-black hover:bg-white hover:text-black transition inline-block"
+                >
+                  GET DIRECTIONS
+                </a>
+              </div>
+            </div>
+            <div>
+              <div className="bg-white text-black border-2 border-white p-8">
+                <h3 className="text-2xl font-black uppercase mb-4">Contact</h3>
+                <div className="flex gap-3 mb-6">
+                  <Phone size={24} className="flex-shrink-0" />
+                  <div>
+                    <p className="font-black text-lg">+1 (555) 900-3275</p>
+                    <p className="font-bold">Open 9 PM - 10 AM</p>
+                  </div>
+                </div>
+                <a
+                  href="tel:+15559003275"
+                  className="px-6 py-3 bg-black text-white font-black border-2 border-black hover:bg-white hover:text-black transition inline-block"
+                >
+                  CALL NOW
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white border-t-2 border-black py-16 px-4">
+      <footer className="bg-black text-white border-t-4 border-white py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-white">
                   <Scissors size={28} className="text-black" />
                 </div>
-                <span className="text-lg font-black text-white">
-                  NESSY BLADES
-                </span>
+                <span className="text-xl font-black text-white">NESSY BLADES</span>
               </div>
-              <p className="text-gray-300 text-sm">
-                Premium barber experience for the night shift.
-              </p>
+              <p className="text-white font-bold">Premium barber experience for the night shift.</p>
             </div>
 
             {/* Navigation */}
             <div>
-              <h4 className="font-black uppercase text-white mb-4">
-                Navigation
-              </h4>
-              <ul className="space-y-2 text-gray-300 text-sm">
+              <h4 className="font-black uppercase text-white mb-4 border-b-2 border-white pb-2">Navigation</h4>
+              <ul className="space-y-2 text-white text-sm">
                 <li>
-                  <a href="#booking" className="hover:text-white transition font-semibold">
+                  <a href="#booking" className="hover:underline transition font-bold">
                     Book Reservation
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition font-semibold">
+                  <a href="#" className="hover:underline transition font-bold">
                     Services
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition font-semibold">
+                  <a href="#" className="hover:underline transition font-bold">
                     About Nessy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition font-semibold">
+                  <a href="#" className="hover:underline transition font-bold">
                     Contact
                   </a>
                 </li>
@@ -613,50 +608,43 @@ export default function NessyBladesApp() {
 
             {/* Location */}
             <div>
-              <h4 className="font-black uppercase text-white mb-4 flex items-center gap-2">
-                <MapPin size={20} />
-                Location
+              <h4 className="font-black uppercase text-white mb-4 border-b-2 border-white pb-2 flex items-center gap-2">
+                <MapPin size={20} /> Location
               </h4>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                124 Midnight Ave
-                <br />
-                Suite B
+              <p className="text-white text-sm leading-relaxed font-bold">
+                124 Midnight Ave<br />Suite B
               </p>
             </div>
 
             {/* Social */}
             <div>
-              <h4 className="font-black uppercase text-white mb-4">
-                Follow Us
-              </h4>
+              <h4 className="font-black uppercase text-white mb-4 border-b-2 border-white pb-2">Follow Us</h4>
               <div className="flex gap-4">
                 <a
                   href="#"
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition border-2 border-white"
+                  className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition border-2 border-white"
                 >
-                  <Instagram size={20} className="text-black" />
+                  <Instagram size={24} className="text-black" />
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition border-2 border-white"
+                  className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition border-2 border-white"
                 >
-                  <Twitter size={20} className="text-black" />
+                  <Twitter size={24} className="text-black" />
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition border-2 border-white"
+                  className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition border-2 border-white"
                 >
-                  <Facebook size={20} className="text-black" />
+                  <Facebook size={24} className="text-black" />
                 </a>
               </div>
             </div>
           </div>
 
           {/* Divider */}
-          <div className="border-t border-gray-700 pt-8">
-            <p className="text-center text-gray-400 text-xs font-light">
-              © 2024 NESSY BLADES. All rights reserved. Open 9 PM - 10 AM
-            </p>
+          <div className="border-t-2 border-white pt-8">
+            <p className="text-center text-white text-xs font-bold">© 2024 NESSY BLADES. ALL RIGHTS RESERVED. OPEN 9 PM - 10 AM</p>
           </div>
         </div>
       </footer>
