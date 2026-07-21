@@ -117,7 +117,7 @@ export default function NessyBladesApp() {
       confirmReservation: '✂️ JẸRISI AKOKO',
       processing: '⏳ N ṢIṢẸ...',
       confirmationMsg: '✅ Gbenike tipẹtipẹ! Wo imeeli rẹ fun igbejade.',
-      successMsg: '✅ Gbenike ti wa! A o tawọ rẹ lẹsẹkẹsẹ.',
+      successMsg: '✅ Gbenike ti wa! A o tawọ rẹ lẹsẹkẹ.',
       reservationNote: 'A o gbe akoko rẹ le. A o fi igbejade wá odidi rẹ.',
       visitUs: 'WO OUN',
       address: 'Adirẹsi',
@@ -171,27 +171,51 @@ export default function NessyBladesApp() {
       text: language === 'en' ? 'The VIP treatment is worth every penny. Master Barber Nessy is a true professional. Best barber in the city!' : 'Iṣẹ to julo na se owo ati. Olubarba Nessy ni oṣokan. Ti o dara julọ ninu ilu!',
       rating: 5,
     },
+    {
+      id: 3,
+      name: 'Chukwu',
+      text: language === 'en' ? 'The precision with those clippers is incredible. Nessy knows exactly what he\'s doing. Five stars, no questions!' : 'Gbọna èké ná jẹ́ o. Nessy mọ ohun tí ó ń ṣe dédide. Oniko márúnn!',
+      rating: 5,
+    },
+    {
+      id: 4,
+      name: 'Tunde',
+      text: language === 'en' ? 'Best investment for a fresh look. The whole experience - from the atmosphere to the cut - is top tier!' : 'Iṣẹ ti o dara julọ. Gbogbo nkan - eko ayan ti ati gbara - o dara!',
+      rating: 5,
+    },
+    {
+      id: 5,
+      name: 'Ibrahim',
+      text: language === 'en' ? 'Walking out of Nessy Blades feeling like a million bucks. The craftsmanship speaks for itself!' : 'Mo jade ninu Nessy Blades pọ ti owo. Iṣẹ yi n sọ ara rẹ!',
+      rating: 5,
+    },
+    {
+      id: 6,
+      name: 'David',
+      text: language === 'en' ? 'Nessy is a magician with those clippers. Every line is perfect, every angle is right. Pure artistry!' : 'Nessy je Ònì. Gbara kọọ kan ni o se. Ẹṣẹ daaadaa!',
+      rating: 5,
+    },
   ];
 
   const portfolioImages = [
     {
       id: 1,
-      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Crect fill=%22%23000%22 width=%22500%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22%3EPrecision Fade%3C/text%3E%3C/svg%3E',
+      url: 'https://images.unsplash.com/photo-1599351751059-0ef0174fb5d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
       title: language === 'en' ? 'Precision Fade' : 'Gbara Kikun',
     },
     {
       id: 2,
-      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Crect fill=%22%23111%22 width=%22500%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22%3EClassic Lineup%3C/text%3E%3C/svg%3E',
-      title: language === 'en' ? 'Classic Lineup' : 'Ilana Ola',
+      url: 'https://images.unsplash.com/photo-1621907742155-70fbb79d4d0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+      title: language === 'en' ? 'Barber Tools' : 'Ohun Elu',
     },
     {
       id: 3,
-      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Crect fill=%22%23222%22 width=%22500%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22%3EBeard Sculpting%3C/text%3E%3C/svg%3E',
-      title: language === 'en' ? 'Beard Sculpting' : 'Obe Awe Kiakia',
+      url: 'https://images.unsplash.com/photo-1605286372149-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+      title: language === 'en' ? 'Professional Setup' : 'Eto Pataki',
     },
     {
       id: 4,
-      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Crect fill=%22%23333%22 width=%22500%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22%3ESharp Cut%3C/text%3E%3C/svg%3E',
+      url: 'https://images.unsplash.com/photo-1599351751059-0ef0174fb5d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
       title: language === 'en' ? 'Sharp Cut' : 'Gbara to Kikun',
     },
   ];
@@ -381,6 +405,7 @@ export default function NessyBladesApp() {
                     src={image.url}
                     alt={image.title}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
                 <p className="p-2 sm:p-4 font-black uppercase text-black text-xs sm:text-sm">{image.title}</p>
@@ -428,22 +453,22 @@ export default function NessyBladesApp() {
 
       {/* Testimonials Section */}
       <section className="bg-black text-white py-12 sm:py-20 px-4">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-black uppercase mb-2 border-b-4 border-white pb-3">{t.whatClientsSay}</h2>
           <p className="text-sm sm:text-xl font-bold mb-8">{t.whatClientsSub}</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="bg-white text-black border-2 border-white p-6 sm:p-8">
+              <div key={testimonial.id} className="bg-white text-black border-2 border-white p-4 sm:p-6 flex flex-col">
                 <div className="mb-4">
-                  <p className="font-black text-lg sm:text-xl mb-3">{testimonial.name}</p>
+                  <p className="font-black text-base sm:text-lg mb-2">{testimonial.name}</p>
                   <div className="flex gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} size={18} className="fill-black" />
+                      <Star key={i} size={16} className="fill-black" />
                     ))}
                   </div>
                 </div>
-                <p className="text-sm sm:text-lg font-bold italic">"{testimonial.text}"</p>
+                <p className="text-sm sm:text-base font-bold italic flex-1">"{testimonial.text}"</p>
               </div>
             ))}
           </div>
