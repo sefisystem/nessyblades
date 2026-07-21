@@ -11,6 +11,10 @@ import {
   Facebook,
   Star,
   Globe,
+  CheckCircle,
+  Calendar,
+  MapPinCheck,
+  MessageSquare,
 } from 'lucide-react';
 
 export default function NessyBladesApp() {
@@ -49,6 +53,27 @@ export default function NessyBladesApp() {
       atmosphereDesc: 'Lo-fi beats, dark leather chairs, and a chill vibe. Just you, the barber, and good conversation.',
       whatClientsSay: 'WHAT CLIENTS SAY',
       whatClientsSub: 'Real testimonials from satisfied customers',
+      howNessyWorks: 'HOW NESSY WORKS',
+      howNessyDesc: 'Nessy Blades operates on a simple philosophy: premium grooming, no stress. Here\'s how we do it:',
+      step1Title: 'You Pick Your Time',
+      step1Desc: 'Choose from 9 PM to 10 AM slots. Whether you\'re a night owl or early bird, we\'ve got you covered.',
+      step2Title: 'We Come to You',
+      step2Desc: 'Mobile barber service. Just give us your location and we\'ll roll up with all the tools and skills you need.',
+      step3Title: 'You Get the Cut',
+      step3Desc: 'Premium precision fades, beard sculpting, and straight-razor work. Every cut is crafted to perfection.',
+      step4Title: 'You Feel the Vibe',
+      step4Desc: 'Black coffee or whiskey. Lo-fi beats. Clean atmosphere. This ain\'t your regular barber shop.',
+      howToReserve: 'HOW TO RESERVE',
+      howToReserveDesc: 'Booking is simple. Follow these 4 easy steps:',
+      reserveStep1: 'Enter Your Details',
+      reserveStep1Desc: 'Fill in your name, phone number, and email address.',
+      reserveStep2: 'Choose Your Service',
+      reserveStep2Desc: 'Pick between The Midnight Classic, The Aliyu Special, or The Dawn Patrol Beard Trim.',
+      reserveStep3: 'Pick Your Date & Time',
+      reserveStep3Desc: 'Select any date and any time slot from 9 PM to 10 AM that works for you.',
+      reserveStep4: 'Share Your Location',
+      reserveStep4Desc: 'Give us your address or click "My Location" to pin your exact coordinates. We\'ll come to you.',
+      confirmationWill: 'You\'ll get a confirmation email within minutes with all the details. Our team will reach out to confirm.',
       bookReservation: 'BOOK YOUR RESERVATION',
       fullName: 'Full Name',
       yourName: 'Your Name',
@@ -89,36 +114,57 @@ export default function NessyBladesApp() {
       heroTitle3: 'FUN OJOEKOO',
       heroSubtitle: 'Owa ti o dara julọ, nigbakigba le titi',
       heroButton: 'Gbe Akoko Rẹ',
-      ourWork: 'IŠE TAWON TEMI',
+      ourWork: 'IŞẸ TAWON TEMI',
       ourWorkSub: 'Gbara to ni kikun lati ọdọ Olubarba Nessy',
       masterBarber: 'OLUBARBA NESSY',
-      masterDesc: 'Olubarba Nessy je eni ti o ni ohun elo patapata. Ositọ ni akoko ijiya, o n ṣiṣẹ fun awon to n gbe ojoekoo ati awon ti a ti sona ni ere. Ó ṣe itupale ni gbara to ni kikun ati gbara to tẹgbẹ. Nessy Blades ti di ibi ti awon ti o bẹ lọ - pẹlu awon olumulo to n ju bi Aliyu Mohammad. Nigba ti oorun ba jade, ijiya na wa.',
+      masterDesc: 'Olubarba Nessy je eni ti o ni ohun elo patapata. Osität ni akoko ijiya, o n șișẹ fun awon to n gbe ojoekoo ati awon ti a ti sona ni ere. Ó șe itupale ni gbara to ni kikun ati gbara to tẹgbẹ. Nessy Blades ti di ibi ti awon ti o bẹ lọ - pẹlu awon olumulo to n ju bi Aliyu Mohammad. Nigba ti oorun ba jade, ijiya na wa.',
       theVibe: 'ORI IRU NKA',
       premiumAmenities: 'Ewa Pataki',
       amenitiesDesc: 'Kafe ala dudu tabi oti waini fun iloyii kọọkan. Duro ni lagbara!',
       atmosphere: 'Eko Ayan',
-      atmosphereDesc: 'Ayan to rọrun, ibadandun ti nla, ati isokan to dara. Ẹ ati olubarba ati ọrọ to dara.',
+      atmosphereDesc: 'Ayan to ródun, ibadandun ti nla, ati isokan to dara. Ẹ ati olubarba ati ọrọ to dara.',
       whatClientsSay: 'KIN NI AWON OLUMULO SOO',
       whatClientsSub: 'Ogbogbo ọrọ lati ọdọ awon ti o n je inu rẹ lọ',
+      howNessyWorks: 'BAWO NI NESSY SHE',
+      howNessyDesc: 'Nessy Blades n gbe ara lori isokan ti o rọrun: isẹ to kikun, ko si oniwa. Eyi ni bawo ni a se e:',
+      step1Title: 'Iwo Yan Akoko Rẹ',
+      step1Desc: 'Yan lati awọn slot 9 PM ti o de 10 AM. Boya iwo je eni ti o n gbe ojoekoo tabi eni ti a ti sona, a ni o.',
+      step2Title: 'A wa si O',
+      step2Desc: 'Mobile barber service. Just fun mi ni ibi rẹ ati a o de pelu gbogbo ohun elu ati agba ti o nilo.',
+      step3Title: 'Iwo Gba Gbara',
+      step3Desc: 'Premium precision fades, beard sculpting, ati straight-razor work. Gbara kọọkan a se ni kikun.',
+      step4Title: 'Iwo Ro Nkan',
+      step4Desc: 'Black coffee tabi whiskey. Lo-fi beats. Clean eko. Eyi kii se regular barber shop.',
+      howToReserve: 'BAWO NI A SE GBENIKE',
+      howToReserveDesc: 'Gbenike ni o rọrun. Tẹle awọn adim 4 ti o rọrun:',
+      reserveStep1: 'Ti Ẹ Ẹ Jade Alaye Rẹ',
+      reserveStep1Desc: 'Fi oruko rẹ, nomba foonu, ati imeeli rẹ.',
+      reserveStep2: 'Yan Isẹ Rẹ',
+      reserveStep2Desc: 'Yan laarin The Midnight Classic, The Aliyu Special, tabi The Dawn Patrol Beard Trim.',
+      reserveStep3: 'Yan Ojo Ati Akoko',
+      reserveStep3Desc: 'Yan ojo eyikeyii ati akoko eyikeyii lati 9 PM de 10 AM ti o se iranlọwọ fun ọ.',
+      reserveStep4: 'Pese Ibi Rẹ',
+      reserveStep4Desc: 'Fun ni obe rẹ tabi tẹ "My Location" lati se pin coordinates rẹ. A o wa si ọ.',
+      confirmationWill: 'Iwọ yoo gba imeeli igbejade ni igba isẹjẹ pẹlu gbogbo alaye. Ẹgbẹ wa yoo ba ọ sọrọ lati jẹrisi.',
       bookReservation: 'GBENIKE AKOKO',
-      fullName: 'Orukọ Deede',
-      yourName: 'Orukọ Rẹ',
-      phone: 'Nọmba Foonu',
+      fullName: 'Oruko Deede',
+      yourName: 'Oruko Rẹ',
+      phone: 'Nomba Foonu',
       phoneNumber: '+234 813 456 4778',
       email: 'Imeeli',
-      selectService: 'Yan Iṣẹ',
-      selectDate: 'Yan Ọjọ',
+      selectService: 'Yan Işẹ',
+      selectDate: 'Yan Ojo',
       selectTime: 'Yan Akoko (9 PM - 10 AM)',
       yourLocation: 'Ibi Ti O Wa',
       myLocation: '📍 IBIARA MI',
       locationPinned: 'Ibi Ti A Gbe',
-      mobileBarber: 'Iṣẹ olubarba wa duro fun rẹ',
+      mobileBarber: 'Işẹ olubarba wa duro fun rẹ',
       openMaps: 'FI MAPS SI IṢẸ',
       confirmReservation: '✂️ JẸRISI AKOKO',
-      processing: '⏳ N ṢIṢẸ...',
-      confirmationMsg: '✅ Gbenike tipẹtipẹ! Wo imeeli rẹ fun igbejade.',
-      successMsg: '✅ Gbenike ti wa! A o tawọ rẹ lẹsẹkẹ.',
-      reservationNote: 'A o gbe akoko rẹ le. A o fi igbejade wá odidi rẹ.',
+      processing: '⏳ N ȘIŞẸ...',
+      confirmationMsg: '✅ Gbenike tipatipati! Wo imeeli rẹ fun igbejade.',
+      successMsg: '✅ Gbenike ti wa! A o tawo rẹ lesẹkesẹ.',
+      reservationNote: 'A o gbe akoko rẹ le. A o fi igbejade wa odidi rẹ.',
       visitUs: 'WO OUN',
       address: 'Adirẹsi',
       getDirections: 'GBA ILANA',
@@ -126,12 +172,12 @@ export default function NessyBladesApp() {
       callNow: 'PE NI BAYI',
       openHours: 'Sii 9 PM - 10 AM',
       navigation: 'Ilana Rin',
-      services: 'Awoṣe Iṣẹ',
+      services: 'Awọsẹ Işẹ',
       aboutNessy: 'Nipa Nessy',
       followUs: 'Tẹle Wa',
       location: 'Ibi',
       copyright: '© 2024 NESSY BLADES. GBOGBO ẸTỌ TI A PA SI. SII 9 PM - 10 AM',
-      madeBy: 'Ẹ kọ pẹlu ife nipẹ Abdelwakil',
+      madeBy: 'Ẹ kọ pẹlu ife nipe Abdelwakil',
     },
   };
 
@@ -146,9 +192,9 @@ export default function NessyBladesApp() {
     },
     {
       id: 'aliyu',
-      name: language === 'en' ? 'The Aliyu Special / VIP Treatment' : 'Ẹbun Aliyu / Iṣẹ to Julo',
+      name: language === 'en' ? 'The Aliyu Special / VIP Treatment' : 'Ẹbun Aliyu / Işẹ to Julo',
       price: 75,
-      description: language === 'en' ? 'Full haircut, beard sculpting, straight razor lineup, and a relaxing facial massage. The works!' : 'Gbara deede, obe awe, ati ṣọ ara. Gbogbo ẹsẹ!',
+      description: language === 'en' ? 'Full haircut, beard sculpting, straight razor lineup, and a relaxing facial massage. The works!' : 'Gbara deede, obe awe, ati șọ ara. Gbogbo ẹsẹ!',
     },
     {
       id: 'dawn',
@@ -162,37 +208,37 @@ export default function NessyBladesApp() {
     {
       id: 1,
       name: 'Sarkinmota',
-      text: language === 'en' ? 'Nessy Blades gave me the sharpest cut I\'ve ever had. The precision and attention to detail is unmatched. Highly recommended!' : 'Nessy Blades fun mi ni gbara to ju eyi ti mo ti ri. Awọ to dara julọ. Mo repela!',
+      text: language === 'en' ? 'Nessy Blades gave me the sharpest cut I\'ve ever had. The precision and attention to detail is unmatched. Highly recommended!' : 'Nessy Blades fun mi ni gbara to ju eyi ti mo ti ri. Awa to dara julo. Mo repela!',
       rating: 5,
     },
     {
       id: 2,
       name: 'Aliyu Mohammad',
-      text: language === 'en' ? 'The VIP treatment is worth every penny. Master Barber Nessy is a true professional. Best barber in the city!' : 'Iṣẹ to julo na se owo ati. Olubarba Nessy ni oṣokan. Ti o dara julọ ninu ilu!',
+      text: language === 'en' ? 'The VIP treatment is worth every penny. Master Barber Nessy is a true professional. Best barber in the city!' : 'Işẹ to julo na se owo ati. Olubarba Nessy ni ọșokan. Ti o dara julo ninu ilu!',
       rating: 5,
     },
     {
       id: 3,
       name: 'Chukwu',
-      text: language === 'en' ? 'The precision with those clippers is incredible. Nessy knows exactly what he\'s doing. Five stars, no questions!' : 'Gbọna èké ná jẹ́ o. Nessy mọ ohun tí ó ń ṣe dédide. Oniko márúnn!',
+      text: language === 'en' ? 'The precision with those clippers is incredible. Nessy knows exactly what he\'s doing. Five stars, no questions!' : 'Gbọna ẹkẹ na jẹ o. Nessy mọ ohun ti o n șe dedide. Oniko marun!',
       rating: 5,
     },
     {
       id: 4,
       name: 'Tunde',
-      text: language === 'en' ? 'Best investment for a fresh look. The whole experience - from the atmosphere to the cut - is top tier!' : 'Iṣẹ ti o dara julọ. Gbogbo nkan - eko ayan ti ati gbara - o dara!',
+      text: language === 'en' ? 'Best investment for a fresh look. The whole experience - from the atmosphere to the cut - is top tier!' : 'Işẹ ti o dara julo. Gbogbo nkan - eko ayan ti ati gbara - o dara!',
       rating: 5,
     },
     {
       id: 5,
       name: 'Ibrahim',
-      text: language === 'en' ? 'Walking out of Nessy Blades feeling like a million bucks. The craftsmanship speaks for itself!' : 'Mo jade ninu Nessy Blades pọ ti owo. Iṣẹ yi n sọ ara rẹ!',
+      text: language === 'en' ? 'Walking out of Nessy Blades feeling like a million bucks. The craftsmanship speaks for itself!' : 'Mo jade ninu Nessy Blades pọ ti owo. Işẹ yi n sọ ara rẹ!',
       rating: 5,
     },
     {
       id: 6,
       name: 'David',
-      text: language === 'en' ? 'Nessy is a magician with those clippers. Every line is perfect, every angle is right. Pure artistry!' : 'Nessy je Ònì. Gbara kọọ kan ni o se. Ẹṣẹ daaadaa!',
+      text: language === 'en' ? 'Nessy is a magician with those clippers. Every line is perfect, every angle is right. Pure artistry!' : 'Nessy je Ọni. Gbara kọọ kan ni o se. Ẹșẹ daaadaa!',
       rating: 5,
     },
   ];
@@ -200,23 +246,69 @@ export default function NessyBladesApp() {
   const portfolioImages = [
     {
       id: 1,
-      url: 'https://images.unsplash.com/photo-1599351751059-0ef0174fb5d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-      title: language === 'en' ? 'Precision Fade' : 'Gbara Kikun',
+      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Cdefs%3E%3ClinearGradient id=%22grad1%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 style=%22stop-color:%23222;stop-opacity:1%22 /%3E%3Cstop offset=%22100%25%22 style=%22stop-color:%23000;stop-opacity:1%22 /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=%22url(%23grad1)%22 width=%22500%22 height=%22500%22/%3E%3Ccircle cx=%22250%22 cy=%22200%22 r=%2280%22 fill=%22%23FFD700%22 opacity=%220.3%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22 font-family=%22Arial%22%3EBarber Work%3C/text%3E%3C/svg%3E',
+      title: language === 'en' ? 'Professional Cut' : 'Gbara Pataki',
     },
     {
       id: 2,
-      url: 'https://images.unsplash.com/photo-1621907742155-70fbb79d4d0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-      title: language === 'en' ? 'Barber Tools' : 'Ohun Elu',
+      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Cdefs%3E%3ClinearGradient id=%22grad2%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 style=%22stop-color:%23333;stop-opacity:1%22 /%3E%3Cstop offset=%22100%25%22 style=%22stop-color:%23111;stop-opacity:1%22 /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=%22url(%23grad2)%22 width=%22500%22 height=%22500%22/%3E%3Crect x=%22100%22 y=%22150%22 width=%22300%22 height=%22200%22 fill=%22%23FFD700%22 opacity=%220.2%22 rx=%2210%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22 font-family=%22Arial%22%3EPremium Tools%3C/text%3E%3C/svg%3E',
+      title: language === 'en' ? 'Quality Equipment' : 'Ohun Elu',
     },
     {
       id: 3,
-      url: 'https://images.unsplash.com/photo-1605286372149-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-      title: language === 'en' ? 'Professional Setup' : 'Eto Pataki',
+      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Cdefs%3E%3ClinearGradient id=%22grad3%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 style=%22stop-color:%23444;stop-opacity:1%22 /%3E%3Cstop offset=%22100%25%22 style=%22stop-color:%23222;stop-opacity:1%22 /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=%22url(%23grad3)%22 width=%22500%22 height=%22500%22/%3E%3Ccircle cx=%22150%22 cy=%22150%22 r=%2260%22 fill=%22%23FFD700%22 opacity=%220.25%22/%3E%3Ccircle cx=%22350%22 cy=%22350%22 r=%2280%22 fill=%22%23FFD700%22 opacity=%220.15%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22 font-family=%22Arial%22%3EMaster Barber%3C/text%3E%3C/svg%3E',
+      title: language === 'en' ? 'Expert Craftsmanship' : 'Luwo Pataki',
     },
     {
       id: 4,
-      url: 'https://images.unsplash.com/photo-1599351751059-0ef0174fb5d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-      title: language === 'en' ? 'Sharp Cut' : 'Gbara to Kikun',
+      url: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Cdefs%3E%3ClinearGradient id=%22grad4%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 style=%22stop-color:%23555;stop-opacity:1%22 /%3E%3Cstop offset=%22100%25%22 style=%22stop-color:%23333;stop-opacity:1%22 /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=%22url(%23grad4)%22 width=%22500%22 height=%22500%22/%3E%3Cpolygon points=%22250,100 450,400 50,400%22 fill=%22%23FFD700%22 opacity=%220.2%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 fill=%22%23fff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22bold%22 font-family=%22Arial%22%3ESharp Lineup%3C/text%3E%3C/svg%3E',
+      title: language === 'en' ? 'Perfect Precision' : 'Kikun Kikun',
+    },
+  ];
+
+  const howNessyWorks = [
+    {
+      icon: <Clock className="w-12 h-12" />,
+      title: t.step1Title,
+      desc: t.step1Desc,
+    },
+    {
+      icon: <MapPinCheck className="w-12 h-12" />,
+      title: t.step2Title,
+      desc: t.step2Desc,
+    },
+    {
+      icon: <Scissors className="w-12 h-12" />,
+      title: t.step3Title,
+      desc: t.step3Desc,
+    },
+    {
+      icon: <Music className="w-12 h-12" />,
+      title: t.step4Title,
+      desc: t.step4Desc,
+    },
+  ];
+
+  const howToReserveSteps = [
+    {
+      icon: <MessageSquare className="w-12 h-12" />,
+      title: t.reserveStep1,
+      desc: t.reserveStep1Desc,
+    },
+    {
+      icon: <Scissors className="w-12 h-12" />,
+      title: t.reserveStep2,
+      desc: t.reserveStep2Desc,
+    },
+    {
+      icon: <Calendar className="w-12 h-12" />,
+      title: t.reserveStep3,
+      desc: t.reserveStep3Desc,
+    },
+    {
+      icon: <MapPin className="w-12 h-12" />,
+      title: t.reserveStep4,
+      desc: t.reserveStep4Desc,
     },
   ];
 
@@ -264,7 +356,7 @@ export default function NessyBladesApp() {
         }
       );
     } else {
-      alert(language === 'en' ? 'Geolocation is not supported by your browser.' : 'Ibi-ṣiṣẹ ko sin kọkọ rẹ.');
+      alert(language === 'en' ? 'Geolocation is not supported by your browser.' : 'Ibi-șișẹ ko sin kọkọ rẹ.');
     }
   };
 
@@ -451,8 +543,51 @@ export default function NessyBladesApp() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* How Nessy Works Section */}
       <section className="bg-black text-white py-12 sm:py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase mb-2 border-b-4 border-white pb-3">{t.howNessyWorks}</h2>
+          <p className="text-base sm:text-lg font-bold mb-12">{t.howNessyDesc}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {howNessyWorks.map((item, idx) => (
+              <div key={idx} className="bg-white text-black border-2 border-white p-6 sm:p-8 flex flex-col items-center text-center">
+                <div className="text-black mb-4">{item.icon}</div>
+                <h3 className="font-black text-lg sm:text-xl mb-3 uppercase">{item.title}</h3>
+                <p className="text-sm sm:text-base font-bold">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How to Reserve Section */}
+      <section className="bg-white text-black py-12 sm:py-20 px-4 border-t-4 border-black">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase mb-2 border-b-4 border-black pb-3">{t.howToReserve}</h2>
+          <p className="text-base sm:text-lg font-bold mb-12">{t.howToReserveDesc}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+            {howToReserveSteps.map((item, idx) => (
+              <div key={idx} className="bg-black text-white border-2 border-black p-6 sm:p-8 flex flex-col items-center text-center">
+                <div className="text-white mb-4 bg-white bg-opacity-10 p-4 rounded-full">{item.icon}</div>
+                <h3 className="font-black text-lg sm:text-xl mb-3 uppercase">{item.title}</h3>
+                <p className="text-sm sm:text-base font-bold">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-black text-white border-4 border-black p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <CheckCircle className="w-8 h-8 flex-shrink-0 mt-1" />
+              <p className="text-base sm:text-lg font-bold">{t.confirmationWill}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="bg-black text-white py-12 sm:py-20 px-4 border-t-4 border-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-black uppercase mb-2 border-b-4 border-white pb-3">{t.whatClientsSay}</h2>
           <p className="text-sm sm:text-xl font-bold mb-8">{t.whatClientsSub}</p>
@@ -649,7 +784,7 @@ export default function NessyBladesApp() {
       </section>
 
       {/* Location Section */}
-      <section className="bg-black text-white py-12 sm:py-20 px-4">
+      <section className="bg-black text-white py-12 sm:py-20 px-4 border-t-4 border-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-black uppercase mb-8 border-b-4 border-white pb-3">{t.visitUs}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
